@@ -7,4 +7,8 @@
   <ItemGroup>
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="NEST" Version="7.4.0" />
+  </ItemGroup>
+
 </Project>
