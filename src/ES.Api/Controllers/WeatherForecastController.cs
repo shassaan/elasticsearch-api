@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Nest;
 
 namespace ES.Api.Controllers
 {
@@ -17,9 +18,12 @@ namespace ES.Api.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IElasticClient elasticClient;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger,
+            IElasticClient elasticClient)
         {
+            this.elasticClient = elasticClient;
             _logger = logger;
         }
 
