@@ -17,7 +17,7 @@ namespace ES.Api.Extensions
             var settings = new ConnectionSettings(new Uri(url))
                 .DefaultIndex(defaultIndex)
                 .DefaultMappingFor<TodoItem>(options=>
-                options.Ignore(a=>a.Content)
+                options
                 .PropertyName(a=> a.Id,"id")
                 .PropertyName(a=> a.Title,"title")
                 .IdProperty(a=> a.Id));
