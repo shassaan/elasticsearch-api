@@ -19,7 +19,6 @@ namespace ES.Api.Extensions
                 .DefaultMappingFor<TodoItem>(options=>
                 options.Ignore(a=>a.Content)
                 .PropertyName(a=> a.Id,"id")
-                .PropertyName(a=> a.Content,"content")
                 .PropertyName(a=> a.Title,"title")
                 .IdProperty(a=> a.Id));
 
