@@ -1,4 +1,5 @@
 using System;
+using ES.Api.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nest;
@@ -14,7 +15,13 @@ namespace ES.Api.Extensions
             var defaultIndex = configuration["elasticsearch:index"];
 
             var settings = new ConnectionSettings(new Uri(url))
-                .DefaultIndex(defaultIndex);
+                .DefaultIndex(defaultIndex)
+                .DefaultMappingFor<TodoItem>(options=>
+                options.Ignore(a=>a.Content)
+                .PropertyName(a=> a.Id,"id")
+                .PropertyName(a=> a.Content,"content")
+                .PropertyName(a=> a.Title,"title")
+                .IdProperty(a=> a.Id));
 
             var client = new ElasticClient(settings);
 
