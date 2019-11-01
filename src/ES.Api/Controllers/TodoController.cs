@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ES.Api.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -22,8 +23,9 @@ namespace ES.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItem>>> Get()
         {
-            var posts = await Task.Run<List<TodoItem>>(()=> new List<TodoItem>());
-            return posts;
+            var searchResponse = await elasticClient.SearchAsync<TodoItem>(request=>
+                request.AllIndices());
+            return searchResponse.Documents.ToList();
         }
         [HttpPost]
         public async Task<ActionResult<TodoItem>> Post([FromBody]TodoItem item)
