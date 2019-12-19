@@ -1,16 +1,18 @@
-version: '2'
+version: '3'
 services:
     elasticsearch:
-        image: docker.elastic.co/elasticsearch/elasticsearch:6.7.2
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
         ports:
             - "9200:9200"
             - "9300:9300"
+        environment:
+            - discovery.type=single-node
         volumes:
             - esdata:/usr/share/elasticsearch/data
         networks:
             - esnetwork
     kibana:
-        image: docker.elastic.co/kibana/kibana:6.7.2
+        image: docker.elastic.co/kibana/kibana:7.5.1
         ports:
             - "5601:5601"
         networks:
