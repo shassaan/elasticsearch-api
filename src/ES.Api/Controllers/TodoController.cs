@@ -23,8 +23,7 @@ namespace ES.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItem>>> Get()
         {
-            var searchResponse = await elasticClient.SearchAsync<TodoItem>(request=>
-                request.AllIndices());
+            var searchResponse = await elasticClient.SearchAsync<TodoItem>();
             return searchResponse.Documents.ToList();
         }
         [HttpPost]
